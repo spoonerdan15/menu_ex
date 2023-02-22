@@ -1,6 +1,7 @@
 import re
 
 from django import template
+from django.http import HttpRequest
 from django.template import RequestContext
 from django.urls import reverse, NoReverseMatch
 
@@ -10,7 +11,8 @@ register = template.Library()
 
 
 @register.inclusion_tag('app/menu.html', takes_context=True)
-def draw_menu(context: RequestContext, parent: int = 0):
+def draw_menu(context: RequestContext, name: str = '', parent: int = 0):
+
     if parent != 0 and 'menu' in context:
         menu = context['menu']
     else:
