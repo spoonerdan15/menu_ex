@@ -1,7 +1,6 @@
 import re
 
 from django import template
-from django.http import HttpRequest
 from django.template import RequestContext
 from django.urls import reverse, NoReverseMatch
 
@@ -44,8 +43,6 @@ def draw_menu(context: RequestContext, name: str = '', parent: int = 0):
                 'name': item.name,
                 'parent': item.parent_id or 0,
             })
-
-
     return {
         'menu': menu,
         'current_menu': (item for item in menu if 'parent' in item and item['parent'] == parent),
